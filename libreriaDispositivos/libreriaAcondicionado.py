@@ -1,4 +1,4 @@
-def aireAcondicionado(estado = True, temperatura = 27):
+def creaAireAcondicionado(estado = True, temperatura = 27):
     aire = {"estado" : estado, "temperatura" : temperatura }
     return aire
 
