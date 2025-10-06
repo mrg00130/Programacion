@@ -6,6 +6,12 @@ def creaHabitacion(descripcion = "Habitación ad hoc", listaBombillas = list(), 
     }
     return resultado
 
+def listaHabitaciones (lista, habitacion):
+
+    lista.append(habitacion)
+    return lista
+
+
 def anadeBombillaHabitacion(habitacion, bombilla):
     habitacion["bombillas"].append(bombilla)
 
