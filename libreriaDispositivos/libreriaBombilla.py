@@ -1,6 +1,7 @@
-def creaBombilla(estado =True, intensidad = 100, color = (255,255,255)):
-    bombilla = {"estado": estado, "intensidad": intensidad, "color": color}
+def creaBombilla(tipo = "lampara", estado = True, intensidad = 100, color = (255,255,255)):
+    bombilla = { "tipo": tipo, "estado": estado, "intensidad": intensidad, "color": color}
     return bombilla
+
 
 def imprimirBombilla(bombilla):
     print("---------------------------------------")
@@ -11,10 +12,10 @@ def imprimirBombilla(bombilla):
     print("Nivel de intensidad:", bombilla["intensidad"])
     print("Color:", bombilla["color"])
     print("---------------------------------------")
-def encenderAire(bombilla):
+def encenderBombilla(bombilla):
     bombilla["estado"] = True
 
-def apagarAire(bombilla):
+def apagarBombilla(bombilla):
     bombilla["estado"] = False
 def cambiarIntensidad(bombilla):
     print("La intensidad es de ", bombilla ["lumens"])

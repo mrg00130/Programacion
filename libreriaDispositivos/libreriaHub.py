@@ -1,4 +1,6 @@
 from libreriaDispositivos.libreriaHabitacion import *
+from libreriaDispositivos.libreriaBombilla import *
+from libreriaDispositivos.libreriaAcondicionado import *
 
 def crearCasa():
     nombre =list()
@@ -7,19 +9,23 @@ def creaHub(listaHabitacion): # lista con cadenas de caracteres con la descripci
     hub = list()
     for habitacion in listaHabitacion:
         hub.append(creaHabitacion(habitacion))
-
     return hub
+
+
 def anadirHabitacion(hub, habitacion):
     listaHabitaciones(habitacion)
     hub = list()
-    nuevaHabitacion = hub.append(habitacion)
-    print(nuevaHabitacion)
-    return nuevaHabitacion
+    masHabitacion = hub.append(habitacion)
+    print(masHabitacion)
+    return masHabitacion
 
-def anadeBombillaHub(hub, indexHabitacion, bombilla):
+def quitarHabitacion(hub, habitacion):
+    listaHabitaciones(habitacion)
+    hub = list()
+    menosHabitacion = hub.remove(habitacion)
+    print(menosHabitacion)
+    return menosHabitacion
 
-    habitacion = hub[indexHabitacion]
-    anadeBombillaHabitacion(habitacion,bombilla)
 
 def imprimeHabitacionHub(hub, indexHabitacion):
     habitacion = hub[indexHabitacion]
@@ -28,3 +34,4 @@ def imprimeHabitacionHub(hub, indexHabitacion):
 def numeroHabitaciones(hub):
     numeroHabitaciones= len(hub)
     print(numeroHabitaciones)
+
