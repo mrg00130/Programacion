@@ -1,6 +1,6 @@
 from libreriaDispositivos.libreriaBombilla import *
 from libreriaDispositivos.libreriaAcondicionado import *
-from libreriaDispositivos.libreraiTemporizadores import *
+from libreriaDispositivos.libreriaTemporizadores import *
 from libreriaDispositivos import  libreriaHub as hub
 from libreriaDispositivos import  libreriaHabitacion as hab
 
