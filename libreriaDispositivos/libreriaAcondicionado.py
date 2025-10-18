@@ -1,5 +1,6 @@
-def creaAireAcondicionado(estado = True, temperatura = 27):
-    aire = {"estado" : estado, "temperatura" : temperatura }
+
+def creaAireAcondicionado(descripcion = "Aire salon", estado = True, temperatura = 27):
+    aire = { "descripcion": descripcion, "estado" : estado, "temperatura" : temperatura }
     return aire
 
 def imprimirAire(aire):
@@ -22,4 +23,6 @@ def cambiarTemperatura(aire):
     t2 = input("A que temperatura lo quieres ")
     aire["temperatura"] = t2
     print("La temperatura es de  --->", aire["temperatura"])
+
+
 
