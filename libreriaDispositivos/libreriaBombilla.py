@@ -1,7 +1,8 @@
 def creaBombilla(estado =True, intensidad = 100, color = (255,255,255)):
     bombilla = {"estado": estado, "intensidad": intensidad, "color": color}
-    return bombilla
+    numbombilla =+ 1
 
+    return bombilla, numbombilla
 def imprimirBombilla(bombilla):
     print("---------------------------------------")
     if (bombilla["estado"]):
