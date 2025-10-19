@@ -12,7 +12,8 @@ def imprimirAire(aire):
     print("La temperatura es de ", aire["temperatura"])
 
     print("---------------------------------------")
-#un temporizador es buena idea o hasta que tenga la temperatura de la sala a un valor
+
+
 def encenderAire(aire):
     aire["estado"] = True
 

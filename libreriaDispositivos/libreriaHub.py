@@ -33,7 +33,6 @@ def obtenerNombresHabitaciones(hub):
         nombres.append(habitacion["descripcion"])
     return nombres
 
-# --- FUNCIÓN MEJORADA Y MÁS ROBUSTA ---
 def resumenDispositivosHogar(hub):
     print("--- Resumen de Dispositivos del Hogar ---")
     total_dispositivos = 0
@@ -45,14 +44,13 @@ def resumenDispositivosHogar(hub):
         if not habitacion["bombilla"] and not habitacion["aire"]:
             print("  No hay dispositivos.")
 
-        # Bucle para bombillas
+
         for bombilla in habitacion["bombilla"]:
             if isinstance(bombilla, dict) and 'tipo' in bombilla:
                 print(f"  - Bombilla: {bombilla['tipo']}")
             else:
                 print(f"  - ATENCIÓN: Dispositivo de bombilla con formato incorrecto: {bombilla}")
 
-        # Bucle para aires acondicionados
         for aire in habitacion["aire"]:
             if isinstance(aire, dict) and 'descripcion' in aire:
                 print(f"  - Aire Acondicionado: {aire['descripcion']}")

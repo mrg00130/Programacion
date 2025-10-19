@@ -34,14 +34,12 @@ def imprimeHabitacion(habitacion):
     if not habitacion["bombilla"] and not habitacion["aire"]:
         print("  No hay dispositivos en esta habitación.")
 
-    # Bucle seguro para bombillas
     for bombilla in habitacion["bombilla"]:
         if isinstance(bombilla, dict) and 'tipo' in bombilla:
             print(f"  - Bombilla: {bombilla['tipo']}")
         else:
             print(f"  - ATENCIÓN: Dispositivo de bombilla con formato incorrecto: {bombilla}")
 
-    # Bucle seguro para aires acondicionados
     for aire in habitacion["aire"]:
         if isinstance(aire, dict) and 'descripcion' in aire:
             print(f"  - Aire Acondicionado: {aire['descripcion']}")
