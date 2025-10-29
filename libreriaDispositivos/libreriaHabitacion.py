@@ -1,59 +1,57 @@
-def creaHabitacion(descripcion = "Habitación ad hoc", listaBombillas = list(), listaAire =list()):
-    resultado = {
-        "descripcion" : descripcion,
-        "bombilla" : listaBombillas,
-        "aire": listaAire
-    }
-    return resultado
-
-def listaHabitaciones (lista, habitacion):
-    lista.append(habitacion)
-    return lista
+from libreriaDispositivos.libreriaBombilla import Bombilla
+from libreriaDispositivos.libreriaAcondicionado import AireAcondicionado
 
 
-def anadeBombillaHabitacion(habitacion, bombilla):
-    habitacion["bombilla"].append(bombilla)
-    numeroB = len(habitacion["bombilla"])
-    return bombilla
+class Habitacion:
+    def __init__(self, descripcion="Habitación"):
+        self._descripcion = descripcion
+        self._bombillas = list()
+        self._aires = list()
 
-def quitaBombillaHabitacion(habitacion, bombilla):
-    habitacion["bombilla"].remove(bombilla)
+    def get_descripcion(self):
+        return self._descripcion
 
-def anadeAireHabitacion(habitacion, aire):
-    habitacion["aire"].append(aire)
+    def get_bombillas(self):
+        return self._bombillas
 
-def quitaAireHabitacion(habitacion, aire):
-    habitacion["aire"].remove(aire)
+    def get_aires(self):
+        return self._aires
 
+    def anadir_bombilla(self, bombilla: Bombilla):
+        if isinstance(bombilla, Bombilla):
+            self._bombillas.append(bombilla)
 
-def imprimeHabitacion(habitacion):
-    print("\n--- Información de la Habitación ---")
-    print("Nombre:", habitacion["descripcion"])
-    print("Dispositivos:")
+    def quitar_bombilla(self, bombilla: Bombilla):
+        if bombilla in self._bombillas:
+            self._bombillas.remove(bombilla)
 
-    if not habitacion["bombilla"] and not habitacion["aire"]:
-        print("  No hay dispositivos en esta habitación.")
+    def anadir_aire(self, aire: AireAcondicionado):
+        if isinstance(aire, AireAcondicionado):
+            self._aires.append(aire)
 
-    for bombilla in habitacion["bombilla"]:
-        if isinstance(bombilla, dict) and 'tipo' in bombilla:
-            print(f"  - Bombilla: {bombilla['tipo']}")
-        else:
-            print(f"  - ATENCIÓN: Dispositivo de bombilla con formato incorrecto: {bombilla}")
+    def quitar_aire(self, aire: AireAcondicionado):
+        if aire in self._aires:
+            self._aires.remove(aire)
 
-    for aire in habitacion["aire"]:
-        if isinstance(aire, dict) and 'descripcion' in aire:
-            print(f"  - Aire Acondicionado: {aire['descripcion']}")
-        else:
-            print(f"  - ATENCIÓN: Dispositivo de aire con formato incorrecto: {aire}")
+    def get_numero_bombillas(self):
+        return len(self._bombillas)
 
-    print("------------------------------------")
+    def get_numero_aires(self):
+        return len(self._aires)
 
+    def get_numero_dispositivos(self):
+        return self.get_numero_bombillas() + self.get_numero_aires()
 
-def numeroBombillas(habitacion):
-    return len(habitacion["bombilla"])
+    def __str__(self):
+        info = f"\n--- Habitación: {self._descripcion} ({self.get_numero_dispositivos()} dispositivos) ---"
 
-def numeroAires(habitacion):
-    return len(habitacion["aire"])
+        if not self._bombillas and not self._aires:
+            info += "\n  No hay dispositivos."
+            return info
 
-def numeroDispositivos(habitacion):
-    return numeroBombillas(habitacion) + numeroAires(habitacion)
+        for b in self._bombillas:
+            info += f"\n{str(b)}"
+        for a in self._aires:
+            info += f"\n{str(a)}"
+
+        return info

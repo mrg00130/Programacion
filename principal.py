@@ -1,104 +1,104 @@
-# principal.py - Script de Validación
 
-from libreriaDispositivos.libreriaBombilla import *
-from libreriaDispositivos.libreriaAcondicionado import *
-from libreriaDispositivos import libreriaHabitacion as hab
-from libreriaDispositivos import libreriaHub as hub
+# Importamos las CLASES
+from libreriaDispositivos.libreriaBombilla import Bombilla
+from libreriaDispositivos.libreriaAcondicionado import AireAcondicionado
+from libreriaDispositivos.libreriaHabitacion import Habitacion
+from libreriaDispositivos.libreriaHub import Hub
 
 print("=============================================")
-print("== INICIO DE LA VALIDACIÓN DEL HOGAR DIGITAL ==")
+print("== INICIO DE LA VALIDACIÓN DEL HOGAR DIGITAL (POO) ==")
 print("=============================================")
 
 # HU01: GESTIÓN DE BOMBILLA
 print("\n--- VALIDANDO HU01: Gestión de Bombilla ---")
-bombilla_estudio = creaBombilla(tipo="Luz de escritorio")
+# 1. Creamos un OBJETO Bombilla
+bombilla_estudio = Bombilla(tipo="Luz de escritorio", estado=False, intensidad=75, color=(255, 255, 0))
 print("1.1. Estado inicial de la bombilla:")
-imprimirBombilla(bombilla_estudio)
+print(bombilla_estudio) # Llama a __str__
 
 print("\n1.2. Encender y apagar bombilla:")
-apagarBombilla(bombilla_estudio)
-print("Estado después de apagar:")
-imprimirBombilla(bombilla_estudio)
-encenderBombilla(bombilla_estudio)
+bombilla_estudio.encender()
 print("Estado después de encender:")
-imprimirBombilla(bombilla_estudio)
-
+print(f"  El estado es: {'Encendido' if bombilla_estudio.get_estado() else 'Apagado'}")
+bombilla_estudio.apagar()
+print("Estado después de apagar:")
+print(f"  El estado es: {'Encendido' if bombilla_estudio.get_estado() else 'Apagado'}")
 
 print("\n1.3. Cambiar intensidad:")
-bombilla_estudio["intensidad"] = 50
+bombilla_estudio.set_intensidad(50)
 print("Intensidad cambiada a 50:")
-imprimirBombilla(bombilla_estudio)
+print(f"  Intensidad actual: {bombilla_estudio.get_intensidad()}%")
 
 print("\n1.4. Cambiar color:")
-bombilla_estudio["color"] = (0, 0, 255)
+bombilla_estudio.set_color(0, 0, 255) # Azul
 print("Color cambiado a azul:")
-imprimirBombilla(bombilla_estudio)
+print(f"  Color actual (RGB): {bombilla_estudio.get_color()}")
 print("--- HU01 VALIDADA CORRECTAMENTE ---")
 
 
-#  HU02: GESTIÓN DEL AIRE ACONDICIONADO
+# HU02: GESTIÓN DEL AIRE ACONDICIONADO
 print("\n\n--- VALIDANDO HU02: Gestión de Aire Acondicionado ---")
-aire_salon = creaAireAcondicionado(descripcion="Aire del Salón")
+aire_salon = AireAcondicionado(descripcion="Aire del Salón", estado=False, temperatura=25)
 print("2.1. Estado inicial del aire:")
-imprimirAire(aire_salon)
+print(aire_salon)
 
 print("\n2.2. Conocer temperatura y estado:")
-print(f"La temperatura actual es: {aire_salon['temperatura']} grados.")
-print(f"El aire está {'encendido' if aire_salon['estado'] else 'apagado'}.")
+print(f"La temperatura actual es: {aire_salon.get_temperatura()} grados.")
+print(f"El aire está {'encendido' if aire_salon.get_estado() else 'apagado'}.")
 
 print("\n2.3. Cambiar temperatura:")
-aire_salon["temperatura"] = 22
+aire_salon.set_temperatura(22)
 print("Temperatura cambiada a 22:")
-imprimirAire(aire_salon)
+print(aire_salon)
 
 print("\n2.4. Encender y apagar:")
-apagarAire(aire_salon)
-print("Estado después de apagar:")
-imprimirAire(aire_salon)
-encenderAire(aire_salon)
+aire_salon.encender()
 print("Estado después de encender:")
-imprimirAire(aire_salon)
+print(aire_salon)
+aire_salon.apagar()
+print("Estado después de apagar:")
+print(aire_salon)
 print("--- HU02 VALIDADA CORRECTAMENTE ---")
 
 
 # HU03: DISTRIBUCIÓN DE DISPOSITIVOS
 print("\n\n--- VALIDANDO HU03: Distribución de Dispositivos en el Hogar ---")
 
-mi_hogar = hub.creaHub(["Salón", "Dormitorio", "Cocina"])
+mi_hogar = Hub(["Salón", "Dormitorio", "Cocina"])
 print("3.1. El hogar ha sido creado.")
-print(f"Número de habitaciones: {hub.numeroHabitaciones(mi_hogar)}")
-print(f"Nombres de las habitaciones: {hub.obtenerNombresHabitaciones(mi_hogar)}")
+print(f"Número de habitaciones: {mi_hogar.get_numero_habitaciones()}")
+print(f"Nombres de las habitaciones: {mi_hogar.get_nombres_habitaciones()}")
 
 print("\n3.2. Añadiendo dispositivos a las habitaciones...")
-salon = mi_hogar[0]
-dormitorio = mi_hogar[1]
+# Obtenemos los OBJETOS habitacion
+salon = mi_hogar.get_habitacion_por_nombre("Salón")
+dormitorio = mi_hogar.get_habitacion_por_nombre("Dormitorio")
 
-bombilla_techo_salon = creaBombilla("Lámpara de techo")
-hab.anadeBombillaHabitacion(salon, bombilla_techo_salon)
-hab.anadeAireHabitacion(salon, aire_salon)
-
-bombilla_noche_dormitorio = creaBombilla("Luz de noche")
-hab.anadeBombillaHabitacion(dormitorio, bombilla_noche_dormitorio)
+bombilla_techo_salon = Bombilla("Lámpara de techo")
+salon.anadir_bombilla(bombilla_techo_salon)
+salon.anadir_aire(aire_salon)
+bombilla_noche_dormitorio = Bombilla("Luz de noche")
+dormitorio.anadir_bombilla(bombilla_noche_dormitorio)
 print("Dispositivos añadidos.")
 
 print("\n3.3. Estado actual de los dispositivos en el hogar:")
-hub.resumenDispositivosHogar(mi_hogar)
+print(mi_hogar)
 
 print("\n3.4. Quitar un dispositivo:")
-hab.quitaBombillaHabitacion(dormitorio, bombilla_noche_dormitorio)
+dormitorio.quitar_bombilla(bombilla_noche_dormitorio)
 print("Se ha quitado la 'Luz de noche' del dormitorio.")
-hub.resumenDispositivosHogar(mi_hogar)
+print(mi_hogar)
 
 print("\n3.5. Modificar un dispositivo existente en el Salón:")
-bombilla_techo_salon["intensidad"] = 20
+bombilla_techo_salon.set_intensidad(20)
 print("Se ha cambiado la intensidad de la 'Lámpara de techo' del salón a 20.")
-hab.imprimeHabitacion(salon)
+print(salon)
 
 print("\n3.6. Identificar dispositivo y saber cantidad:")
-print(f"El salón tiene {hab.numeroDispositivos(salon)} dispositivos.")
+print(f"El salón tiene {salon.get_numero_dispositivos()} dispositivos.")
 print("--- HU03 VALIDADA CORRECTAMENTE ---")
 
 
 print("\n=============================================")
-print("==== VALIDACIÓN FINALIZADA CON ÉXITO ====")
+print("==== VALIDACIÓN POO FINALIZADA CON ÉXITO ====")
 print("=============================================")

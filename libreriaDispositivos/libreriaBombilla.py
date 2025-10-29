@@ -1,34 +1,50 @@
+# libreriaDispositivos/libreriaBombilla.py
+
 class Bombilla:
+    def __init__(self, tipo="lámpara", estado=True, intensidad=100, color=(255, 255, 255)):
+        self._tipo = tipo
+        self._estado = estado  # True = encendida, False = apagada
+        self._intensidad = intensidad
+        self._color = color
 
-    def __init__(self, tipo="lámpara", estado=False, intensidad=100, color=(255, 255, 255)):
-        self.__tipo = tipo
-        self.__estado = estado  # False = apagada, True = encendida
-        self.__intensidad = intensidad
-        self.__color = color
-
-    def encender(self):
-        self.__estado = True
-
-    def apagar(self):
-
-        self.__estado = False
-
-    def cambiar_intensidad(self, nueva_intensidad):
-        if 0 <= nueva_intensidad <= 100:
-            self.__intensidad = nueva_intensidad
-
-    def cambiar_color(self, nuevo_color):
-        self.__color = nuevo_color
-
+    # --- Getters (para obtener valores) ---
+    def get_tipo(self):
+        return self._tipo
 
     def get_estado(self):
-        return self.__estado
+        return self._estado
 
     def get_intensidad(self):
-        return self.__intensidad
+        return self._intensidad
 
     def get_color(self):
-        return self.__color
+        return self._color
 
-    def get_tipo(self):
-        return self.__tipo
+    # --- Setters (para cambiar valores) ---
+    def set_intensidad(self, valor):
+        if 0 <= valor <= 100:
+            self._intensidad = valor
+        else:
+            pass
+
+    def set_color(self, r, g, b):
+        self._color = (r, g, b)
+
+    # --- Métodos de acción ---
+    def encender(self):
+        self._estado = True
+
+    def apagar(self):
+        self._estado = False
+
+    # --- Método especial __str__ ---
+    # Reemplaza a 'imprimirBombilla'. Devuelve un string en lugar de imprimirlo.
+    def __str__(self):
+        estado_str = "encendida" if self._estado else "apagada"
+        info = (
+            f"  - Bombilla ({self._tipo}):\n"
+            f"    Estado: {estado_str}\n"
+            f"    Intensidad: {self._intensidad}%\n"
+            f"    Color (RGB): {self._color}"
+        )
+        return info
