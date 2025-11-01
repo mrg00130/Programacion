@@ -24,6 +24,7 @@ class AireAcondicionado:
     def apagar(self):
         self._estado = False
 
+    #Imprimir
     def __str__(self):
         estado_str = "encendido" if self._estado else "apagado"
         info = (

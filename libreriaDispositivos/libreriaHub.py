@@ -36,7 +36,7 @@ class Hub:
         for h in self._habitaciones:
             total += h.get_numero_dispositivos()
         return total
-
+    #imprimir
     def __str__(self):
         info = "--- Resumen de Dispositivos del Hogar ---"
         for h in self._habitaciones:

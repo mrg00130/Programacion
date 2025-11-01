@@ -37,8 +37,7 @@ class Bombilla:
     def apagar(self):
         self._estado = False
 
-    # --- Método especial __str__ ---
-    # Reemplaza a 'imprimirBombilla'. Devuelve un string en lugar de imprimirlo.
+    # Imprimir
     def __str__(self):
         estado_str = "encendida" if self._estado else "apagada"
         info = (

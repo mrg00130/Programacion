@@ -42,6 +42,9 @@ class Habitacion:
     def get_numero_dispositivos(self):
         return self.get_numero_bombillas() + self.get_numero_aires()
 
+
+    #imprimir
+
     def __str__(self):
         info = f"\n--- Habitación: {self._descripcion} ({self.get_numero_dispositivos()} dispositivos) ---"
 

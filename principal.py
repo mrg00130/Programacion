@@ -1,5 +1,4 @@
 
-# Importamos las CLASES
 from libreriaDispositivos.libreriaBombilla import Bombilla
 from libreriaDispositivos.libreriaAcondicionado import AireAcondicionado
 from libreriaDispositivos.libreriaHabitacion import Habitacion
