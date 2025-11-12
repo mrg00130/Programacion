@@ -1,88 +1,53 @@
+from libreriaDispositivos.libreriaProgramador import Programador
+
 class Bombilla:
-    def __init__(self, tipo = "lampara", estado = "encendido", intensidad = 100, color = (255, 0, 0) ):
+    __contador = 0
+
+    def __init__(self, tipo="lámpara", estado=False, intensidad=100, color=(255, 255, 255)):
+        Bombilla.__contador += 1
+        self.__id = f"bombilla{Bombilla.__contador}"
+        self.__tipo = tipo
+        self.__estado = estado
         self.__intensidad = intensidad
         self.__color = color
-        self.__tipo = tipo
-    @property
-    def tipo(self):
-        return self.__tipo
-    @tipo.setter
-    def tipo(self,tipo):
-        self.__tipo = tipo
+        self.__programador = None
 
+    def encender(self):
+        self.__estado = True
+
+    def apagar(self):
+        self.__estado = False
+
+    def cambiar_intensidad(self, nueva_intensidad):
+        if 0 <= nueva_intensidad <= 100:
+            self.__intensidad = nueva_intensidad
+
+    def cambiar_color(self, nuevo_color):
+        self.__color = nuevo_color
+
+    def set_programador(self, programador_obj):
+        if isinstance(programador_obj, Programador):
+            self.__programador = programador_obj
+        else:
+            print("Error: El objeto no es un Programador válido.")
+
+    def get_programador(self):
+        return self.__programador
+
+    def get_id(self):
+        return self.__id
+
+    def get_estado(self):
+        return self.__estado
+        
     def get_tipo(self):
-        return self.tipo
+        return self.__tipo
 
-    @property
-    def estado(self):
-        return self._estado
-
-    @estado.setter
-    def set_tipo(self, estado):
-        self.estado = estado
-
-
-
-    def imprimirBombilla(bombilla):
-        print("---------------------------------------")
-        if (bombilla["estado"]):
-            print("Bombilla encendida")
-        else:
-            print("Bombilla apagada")
-        print("Nivel de intensidad:", bombilla["intensidad"])
-        print("Color:", bombilla["color"])
-        print("---------------------------------------")
-
-    def encenderBombilla(bombilla):
-        bombilla["estado"] = True
-
-    def apagarBombilla(bombilla):
-        bombilla["estado"] = False
-
-    def cambiarIntensidad(bombilla):
-        print("La intensidad es de ", bombilla ["lumens"])
-        i2 = input("A que intensidad quieres ")
-        bombilla["intensidad"] = i2
-        print("La intensidad es de  --->", bombilla["intensidad"])
-
-    def cambiarColor(bombilla,colorPedido):
-
-        color_minusculas = colorPedido.lower()
-        if color_minusculas == "blanco":
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "rojo":
-            bombilla["color"] = (255, 0, 0)
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "verde":
-            bombilla["color"] = (0, 255, 0)
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "azul":
-            bombilla["color"] = (0, 0, 255)
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "amarillo":
-            bombilla["color"] = (255, 255, 0)
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "cian":
-            bombilla["color"] = (0, 255, 255)
-            print("El color cambiado a --->", bombilla["color"])
-
-        elif color_minusculas == "magenta":
-            bombilla["color"] = (255, 0, 255)
-            print("El color cambiado a --->", bombilla["color"])
-
-        else:
-
-            print(f"El color '{color_minusculas}' no es una opción válida.")
-            cambiarColor(bombilla)
-
-
-
-
-
-
-
+    
+    def get_intensidad(self):
+        """Devuelve la intensidad actual."""
+        return self.__intensidad
+        
+    def get_color(self):
+        """Devuelve el color actual."""
+        return self.__color

@@ -1,104 +1,81 @@
-# principal.py - Script de Validación
+from libreriaDispositivos.libreriaBombilla import Bombilla
+from libreriaDispositivos.libreriaAcondicionado import AireAcondicionado
+from libreriaDispositivos.libreriaHabitacion import Habitacion
+from libreriaDispositivos.libreriaHub import Hub
+from libreriaDispositivos.libreriaProgramador import Programador
+def imprimir_estado_bombilla(b):
+    print(f"  > Bombilla [{b.get_id()}]: {b.get_tipo()}")
+    print(f"    Estado: {'Encendida' if b.get_estado() else 'Apagada'}")
+    print(f"    Intensidad: {b.get_intensidad()}%")
+    print(f"    Color: {b.get_color()}")
 
-from libreriaDispositivos.libreriaBombilla import *
-from libreriaDispositivos.libreriaAcondicionado import *
-from libreriaDispositivos import libreriaHabitacion as hab
-from libreriaDispositivos import libreriaHub as hub
+def imprimir_estado_aire(a):
+    print(f"  > Aire [{a.get_id()}]: {a.get_descripcion()}")
+    print(f"    Estado: {'Encendido' if a.get_estado() else 'Apagado'}")
+    print(f"    Temperatura: {a.get_temperatura()}°C")
 
-print("=============================================")
-print("== INICIO DE LA VALIDACIÓN DEL HOGAR DIGITAL ==")
-print("=============================================")
+def imprimir_resumen_hogar(hub):
+    print("===========================================")
+    print("== RESUMEN DEL HOGAR DIGITAL ==")
+    print(f"Total de Habitaciones: {hub.get_numero_habitaciones()}")
+    
+    for hab in hub.get_habitaciones():
+        print(f"\n--- HABITACIÓN: {hab.get_descripcion()} ({hab.get_numero_dispositivos()} dispositivos) ---")
+        if hab.get_numero_dispositivos() == 0:
+            print("  (Esta habitación está vacía)")
+            
+        for b in hab.get_bombillas():
+            imprimir_estado_bombilla(b)
+        for a in hab.get_aires():
+            imprimir_estado_aire(a)
+            
+    print("\n-------------------------------------------")
+    print(f"Total de dispositivos en el hogar: {hub.get_total_dispositivos_hogar()}")
+    print("===========================================")
 
-# HU01: GESTIÓN DE BOMBILLA
-print("\n--- VALIDANDO HU01: Gestión de Bombilla ---")
-bombilla_estudio = creaBombilla(tipo="Luz de escritorio")
-print("1.1. Estado inicial de la bombilla:")
-imprimirBombilla(bombilla_estudio)
+print("\n[Validando HU01 y HU02: Creación de Dispositivos con IDs]...")
+b1 = Bombilla(tipo="Lámpara de techo Salón")
+a1 = AireAcondicionado(descripcion="Aire del Salón")
+b2_noche = Bombilla(tipo="Luz de noche Dormitorio", estado=True, intensidad=20)
 
-print("\n1.2. Encender y apagar bombilla:")
-apagarBombilla(bombilla_estudio)
-print("Estado después de apagar:")
-imprimirBombilla(bombilla_estudio)
-encenderBombilla(bombilla_estudio)
-print("Estado después de encender:")
-imprimirBombilla(bombilla_estudio)
+imprimir_estado_bombilla(b1)
+imprimir_estado_aire(a1)
+imprimir_estado_bombilla(b2_noche)
 
+print("\n[Validando HU03: Hogar...]")
+mi_casa = Hub()
+salon = Habitacion(descripcion="Salón")
+dormitorio = Habitacion(descripcion="Dormitorio")
+mi_casa.anadir_habitacion(salon)
+mi_casa.anadir_habitacion(dormitorio)
+salon.anadir_bombilla(b1)
+salon.anadir_aire(a1)
+dormitorio.anadir_bombilla(b2_noche)
 
-print("\n1.3. Cambiar intensidad:")
-bombilla_estudio["intensidad"] = 50
-print("Intensidad cambiada a 50:")
-imprimirBombilla(bombilla_estudio)
+imprimir_resumen_hogar(mi_casa)
 
-print("\n1.4. Cambiar color:")
-bombilla_estudio["color"] = (0, 0, 255)
-print("Color cambiado a azul:")
-imprimirBombilla(bombilla_estudio)
-print("--- HU01 VALIDADA CORRECTAMENTE ---")
+print("\n\n--- VALIDANDO MEJORAS (ENTREGA 3): Programador Polimórfico ---")
 
+print("\n1. Probando métodos de clase:")
+print(f"  Hora actual del sistema: {Programador.get_hora_actual()}")
 
-#  HU02: GESTIÓN DEL AIRE ACONDICIONADO
-print("\n\n--- VALIDANDO HU02: Gestión de Aire Acondicionado ---")
-aire_salon = creaAireAcondicionado(descripcion="Aire del Salón")
-print("2.1. Estado inicial del aire:")
-imprimirAire(aire_salon)
+print("\n2. Probando programación de BOMBILLA (Luz Entrada):")
+b3_programada = Bombilla(tipo="Luz Entrada", estado=False)
+p_bombilla = Programador(b3_programada)
+b3_programada.set_programador(p_bombilla)
+p_bombilla.comienzo("Lunes", "08:00")
+print(p_bombilla.get_horario())
 
-print("\n2.2. Conocer temperatura y estado:")
-print(f"La temperatura actual es: {aire_salon['temperatura']} grados.")
-print(f"El aire está {'encendido' if aire_salon['estado'] else 'apagado'}.")
+print("\n3. Probando programación de AIRE ACONDICIONADO (Aire Salón):")
+print("   Estado inicial del Aire del Salón:")
+imprimir_estado_aire(a1) 
 
-print("\n2.3. Cambiar temperatura:")
-aire_salon["temperatura"] = 22
-print("Temperatura cambiada a 22:")
-imprimirAire(aire_salon)
+p_aire = Programador(a1)
+a1.set_programador(p_aire)
 
-print("\n2.4. Encender y apagar:")
-apagarAire(aire_salon)
-print("Estado después de apagar:")
-imprimirAire(aire_salon)
-encenderAire(aire_salon)
-print("Estado después de encender:")
-imprimirAire(aire_salon)
-print("--- HU02 VALIDADA CORRECTAMENTE ---")
+p_aire.comienzo("Viernes", "17:00")
+p_aire.fin("Viernes", "23:00") 
 
-
-# HU03: DISTRIBUCIÓN DE DISPOSITIVOS
-print("\n\n--- VALIDANDO HU03: Distribución de Dispositivos en el Hogar ---")
-
-mi_hogar = hub.creaHub(["Salón", "Dormitorio", "Cocina"])
-print("3.1. El hogar ha sido creado.")
-print(f"Número de habitaciones: {hub.numeroHabitaciones(mi_hogar)}")
-print(f"Nombres de las habitaciones: {hub.obtenerNombresHabitaciones(mi_hogar)}")
-
-print("\n3.2. Añadiendo dispositivos a las habitaciones...")
-salon = mi_hogar[0]
-dormitorio = mi_hogar[1]
-
-bombilla_techo_salon = creaBombilla("Lámpara de techo")
-hab.anadeBombillaHabitacion(salon, bombilla_techo_salon)
-hab.anadeAireHabitacion(salon, aire_salon)
-
-bombilla_noche_dormitorio = creaBombilla("Luz de noche")
-hab.anadeBombillaHabitacion(dormitorio, bombilla_noche_dormitorio)
-print("Dispositivos añadidos.")
-
-print("\n3.3. Estado actual de los dispositivos en el hogar:")
-hub.resumenDispositivosHogar(mi_hogar)
-
-print("\n3.4. Quitar un dispositivo:")
-hab.quitaBombillaHabitacion(dormitorio, bombilla_noche_dormitorio)
-print("Se ha quitado la 'Luz de noche' del dormitorio.")
-hub.resumenDispositivosHogar(mi_hogar)
-
-print("\n3.5. Modificar un dispositivo existente en el Salón:")
-bombilla_techo_salon["intensidad"] = 20
-print("Se ha cambiado la intensidad de la 'Lámpara de techo' del salón a 20.")
-hab.imprimeHabitacion(salon)
-
-print("\n3.6. Identificar dispositivo y saber cantidad:")
-print(f"El salón tiene {hab.numeroDispositivos(salon)} dispositivos.")
-print("--- HU03 VALIDADA CORRECTAMENTE ---")
-
-
-print("\n=============================================")
-print("==== VALIDACIÓN FINALIZADA CON ÉXITO ====")
-print("=============================================")
+print("\n   Horario programado para 'Aire del Salón':")
+print(p_aire.get_horario())
+print("\n--- VALIDACIÓN DE MEJORAS FINALIZADA ---")

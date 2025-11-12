@@ -1,62 +1,29 @@
-from libreriaDispositivos.libreriaHabitacion import *
-from libreriaDispositivos.libreriaBombilla import *
-from libreriaDispositivos.libreriaAcondicionado import *
+from libreriaDispositivos.libreriaHabitacion import Habitacion
 
-def crearCasa():
-    nombre =list()
-    return  nombre
+class Hub:
 
-def creaHub(listaHabitacion):
-    hub = list()
-    for habitacion in listaHabitacion:
-        hub.append(creaHabitacion(habitacion))
-    return hub
+    def __init__(self):
+        self.__lista_habitaciones = []
 
-def anadirHabitacion(hub, habitacion):
-    hub.append(habitacion)
-    return hub
+    def anadir_habitacion(self, habitacion_obj):
+        if isinstance(habitacion_obj, Habitacion):
+            self.__lista_habitaciones.append(habitacion_obj)
+            
+    def quitar_habitacion(self, habitacion_obj):
+        if habitacion_obj in self.__lista_habitaciones:
+            self.__lista_habitaciones.remove(habitacion_obj)
 
-def quitarHabitacion(hub, habitacion):
-    hub.remove(habitacion)
-    return hub
+    def get_habitaciones(self):
+        return self.__lista_habitaciones
 
-def imprimeHabitacionHub(hub, indexHabitacion):
-    habitacion = hub[indexHabitacion]
-    imprimeHabitacion(habitacion)
+    def get_numero_habitaciones(self):
+        return len(self.__lista_habitaciones)
 
-def numeroHabitaciones(hub):
-    return len(hub)
+    def get_nombres_habitaciones(self):
+        return [h.get_descripcion() for h in self.__lista_habitaciones]
 
-def obtenerNombresHabitaciones(hub):
-    nombres = []
-    for habitacion in hub:
-        nombres.append(habitacion["descripcion"])
-    return nombres
-
-def resumenDispositivosHogar(hub):
-    print("--- Resumen de Dispositivos del Hogar ---")
-    total_dispositivos = 0
-    for habitacion in hub:
-        num_dispositivos_hab = numeroDispositivos(habitacion)
-        total_dispositivos += num_dispositivos_hab
-        print(f"\nHabitación: {habitacion['descripcion']} ({num_dispositivos_hab} dispositivos)")
-
-        if not habitacion["bombilla"] and not habitacion["aire"]:
-            print("  No hay dispositivos.")
-
-
-        for bombilla in habitacion["bombilla"]:
-            if isinstance(bombilla, dict) and 'tipo' in bombilla:
-                print(f"  - Bombilla: {bombilla['tipo']}")
-            else:
-                print(f"  - ATENCIÓN: Dispositivo de bombilla con formato incorrecto: {bombilla}")
-
-        for aire in habitacion["aire"]:
-            if isinstance(aire, dict) and 'descripcion' in aire:
-                print(f"  - Aire Acondicionado: {aire['descripcion']}")
-            else:
-                print(f"  - ATENCIÓN: Dispositivo de aire con formato incorrecto: {aire}")
-
-    print("\n-----------------------------------------")
-    print(f"Total de dispositivos en el hogar: {total_dispositivos}")
-    print("-----------------------------------------")
+    def get_total_dispositivos_hogar(self):
+        total = 0
+        for hab in self.__lista_habitaciones:
+            total += hab.get_numero_dispositivos()
+        return total
