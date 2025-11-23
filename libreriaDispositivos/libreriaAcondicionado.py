@@ -1,42 +1,38 @@
-
 from libreriaDispositivos.libreriaProgramador import Programador
-class AireAcondicionado:
+from libreriaDispositivos.dispositivo import Dispositivo
+
+
+
+class AireAcondicionado(Dispositivo):
     __contador = 0
 
     def __init__(self, descripcion="Aire Salón", estado=False, temperatura=24):
+        super().__init__(nombre=descripcion, nivel_inicial=temperatura, min_val=16, max_val=30, estado=estado)
+
         AireAcondicionado.__contador += 1
         self.__id = f"aire{AireAcondicionado.__contador}"
-        self.__descripcion = descripcion
-        self.__estado = estado
-        self.__temperatura = temperatura
         self.__programador = None
 
-    def encender(self):
-        self.__estado = True
-
-    def apagar(self):
-        self.__estado = False
-
     def cambiar_temperatura(self, nueva_temp):
-        self.__temperatura = nueva_temp
+        diferencia = nueva_temp - self._nivelIntensidad
+        if diferencia > 0:
+            self.aumentarIntensidad(diferencia)
+        elif diferencia < 0:
+            self.disminuirIntensidad(abs(diferencia))
 
-    def set_programador(self, programador_obj):
-        if isinstance(programador_obj, Programador):
-            self.__programador = programador_obj
-        else:
-            print("Error: El objeto no es un Programador válido.")
-
-    def get_programador(self):
-        return self.__programador
 
     def get_id(self):
         return self.__id
 
-    def get_estado(self):
-        return self.__estado
-
     def get_temperatura(self):
-        return self.__temperatura
+        return self.get_nivel()  # La intensidad es la temperatura
 
     def get_descripcion(self):
-        return self.__descripcion
+        return self.get_nombre()
+
+    def set_programador(self, programador_obj):
+        if isinstance(programador_obj, Programador):
+            self.__programador = programador_obj
+
+    def get_programador(self):
+        return self.__programador
