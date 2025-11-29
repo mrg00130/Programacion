@@ -1,4 +1,7 @@
-class Dispositivo:
+from abc import ABC, abstractmethod
+
+
+class Dispositivo(ABC):
 
     def __init__(self, nombre, nivel_inicial=0, min_val=0, max_val=100, estado=False):
         self._nombre = nombre
@@ -6,7 +9,6 @@ class Dispositivo:
         self._minIntensidad = min_val
         self._maxIntensidad = max_val
         self._estado = estado
-        # ID genérico (lo gestionarán los hijos o se puede mover aquí si se desea)
         self._id = "genérico"
 
     def encender(self):
@@ -15,19 +17,15 @@ class Dispositivo:
     def apagar(self):
         self._estado = False
 
-    def aumentarIntensidad(self, cantidad):
-        nuevo_valor = self._nivelIntensidad + cantidad
-        if nuevo_valor > self._maxIntensidad:
-            raise ValueError(f"Error: No se puede aumentar a {nuevo_valor}. El máximo es {self._maxIntensidad}.")
-        self._nivelIntensidad = nuevo_valor
 
-    def disminuirIntensidad(self, cantidad):
-        nuevo_valor = self._nivelIntensidad - cantidad
-        if nuevo_valor < self._minIntensidad:
-            raise ValueError(f"Error: No se puede disminuir a {nuevo_valor}. El mínimo es {self._minIntensidad}.")
-        self._nivelIntensidad = nuevo_valor
+    @abstractmethod
+    def aumentarIntensidad(self, cantidad=0):
+        pass
 
-    # Getters comunes
+    @abstractmethod
+    def disminuirIntensidad(self, cantidad=0):
+        pass
+
     def get_estado(self):
         return self._estado
 
