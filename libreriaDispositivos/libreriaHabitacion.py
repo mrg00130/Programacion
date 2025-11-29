@@ -13,25 +13,21 @@ class Habitacion(LogHistorico):
 
     def guardaLog(self, fichero: str):
 
-        try:
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            with open(fichero, 'a', encoding='utf-8') as f:
-                f.write(f"\n--- LOG HABITACIÓN: {self.__descripcion} [{timestamp}] ---\n")
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with open(fichero, 'a', encoding='utf-8') as f:
+            f.write(f"\n--- LOG HABITACIÓN: {self.__descripcion} [{timestamp}] ---\n")
 
-                for b in self.__lista_bombillas:
-                    estado = "ON" if b.get_estado() else "OFF"
-                    info = f"ID: {b.get_id()} | Tipo: {b.get_tipo()} | Estado: {estado} | Intensidad: {b.get_intensidad()}%"
-                    f.write(info + "\n")
+            for b in self.__lista_bombillas:
+                estado = "ON" if b.get_estado() else "OFF"
+                info = f"ID: {b.get_id()} | Tipo: {b.get_tipo()} | Estado: {estado} | Intensidad: {b.get_intensidad()}%"
+                f.write(info + "\n")
 
-                for a in self.__lista_aires:
-                    estado = "ON" if a.get_estado() else "OFF"
-                    info = f"ID: {a.get_id()} | Desc: {a.get_descripcion()} | Estado: {estado} | Temp: {a.get_temperatura()}ºC"
-                    f.write(info + "\n")
+            for a in self.__lista_aires:
+                estado = "ON" if a.get_estado() else "OFF"
+                info = f"ID: {a.get_id()} | Desc: {a.get_descripcion()} | Estado: {estado} | Temp: {a.get_temperatura()}ºC"
+                f.write(info + "\n")
 
-                f.write("-" * 50 + "\n")
-            print(f"Log guardado correctamente en '{fichero}'.")
-        except Exception as e:
-            print(f"Error al guardar el log: {e}")
+            f.write("-" * 50 + "\n")
 
 
     def anadir_bombilla(self, bombilla_obj):

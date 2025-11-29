@@ -3,34 +3,53 @@ from libreriaDispositivos.libreriaAcondicionado import AireAcondicionado
 from libreriaDispositivos.libreriaHabitacion import Habitacion
 from libreriaDispositivos.libreriaHub import Hub
 
+
+def imprimir_info(msg):
+    print(f"[INFO] {msg}")
+
+
+def imprimir_error(msg):
+    print(f"[ERROR] {msg}")
+
+
 print("=== VALIDACIÓN ENTREGA 5: ABSTRACCIÓN E INTERFACES ===\n")
 
-# 1.  Inicial
 salon = Habitacion("Salón Principal")
 b1 = Bombilla("Lámpara Techo", intensidad=20)
 a1 = AireAcondicionado("Aire Split", temperatura=22)
+
 salon.anadir_bombilla(b1)
 salon.anadir_aire(a1)
 
-print("1. Probando métodos abstractos con valor por defecto...")
-print(f"Bombilla intensidad inicial: {b1.get_intensidad()}%")
-b1.aumentarIntensidad()
-print(f"Bombilla tras aumentar (default): {b1.get_intensidad()}% (Esperado: 30)")
+print("1. Probando métodos abstractos (sin parámetros)...")
 
-print(f"Aire temp inicial: {a1.get_temperatura()}ºC")
-a1.aumentarIntensidad()
-print(f"Aire tras aumentar (default): {a1.get_temperatura()}ºC (Esperado: 23)")
+imprimir_info(f"Bombilla antes: {b1.get_intensidad()}%")
+try:
+    b1.aumentarIntensidad()
+    imprimir_info(f"Bombilla después (debe ser +10): {b1.get_intensidad()}%")
+except ValueError as e:
+    imprimir_error(e)
 
-print("\n2. Probando generación de Log (Interfaz LogHistorico)...")
+imprimir_info(f"Aire antes: {a1.get_temperatura()}ºC")
+try:
+    a1.aumentarIntensidad()
+    imprimir_info(f"Aire después (debe ser +1): {a1.get_temperatura()}ºC")
+except ValueError as e:
+    imprimir_error(e)
+
+print("\n2. Probando generación de Log...")
 nombre_log = "historial_habitacion.txt"
 
-salon.guardaLog(nombre_log)
+try:
+    salon.guardaLog(nombre_log)
+    imprimir_info(f"Se ha llamado a guardaLog(). Verifique '{nombre_log}'.")
 
-b1.encender()
-b1.aumentarIntensidad(50) # Subimos a 80
-a1.apagar()
+    b1.encender()
+    b1.aumentarIntensidad(50)
+    salon.guardaLog(nombre_log)
+    imprimir_info("Se ha guardado una segunda entrada en el log tras modificar dispositivos.")
 
-salon.guardaLog(nombre_log)
+except Exception as e:
+    imprimir_error(f"Fallo al guardar log: {e}")
 
-print(f"\n--> Verifica el archivo '{nombre_log}' para ver el resultado.")
-print("=== FIN VALIDACIÓN ===")
+print("\n=== FIN VALIDACIÓN ===")

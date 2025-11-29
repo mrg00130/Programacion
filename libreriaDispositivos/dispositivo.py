@@ -34,3 +34,6 @@ class Dispositivo(ABC):
 
     def get_nombre(self):
         return self._nombre
+
+    def get_id(self):
+        return self._id

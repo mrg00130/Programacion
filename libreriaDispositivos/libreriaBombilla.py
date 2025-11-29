@@ -1,4 +1,3 @@
-# libreriaDispositivos/bombilla.py
 from libreriaDispositivos.libreriaProgramador import Programador
 from libreriaDispositivos.dispositivo import Dispositivo
 
@@ -14,36 +13,28 @@ class Bombilla(Dispositivo):
         self.__color = color
         self.__programador = None
 
+    # --- IMPLEMENTACIÓN (Sin prints, solo lógica y excepciones) ---
 
     def aumentarIntensidad(self, cantidad=0):
         incremento = 10 if cantidad == 0 else cantidad
-
         nuevo_valor = self._nivelIntensidad + incremento
+
         if nuevo_valor > self._maxIntensidad:
-            raise ValueError(f"Error Bombilla: No se puede subir {incremento}. Máximo es {self._maxIntensidad}.")
+            raise ValueError(f"La bombilla no puede superar {self._maxIntensidad} (intentado: {nuevo_valor})")
         self._nivelIntensidad = nuevo_valor
 
     def disminuirIntensidad(self, cantidad=0):
         decremento = 10 if cantidad == 0 else cantidad
-
         nuevo_valor = self._nivelIntensidad - decremento
+
         if nuevo_valor < self._minIntensidad:
-            raise ValueError(f"Error Bombilla: No se puede bajar {decremento}. Mínimo es {self._minIntensidad}.")
+            raise ValueError(f"La bombilla no puede bajar de {self._minIntensidad} (intentado: {nuevo_valor})")
         self._nivelIntensidad = nuevo_valor
 
+    # --- MÉTODOS ESPECÍFICOS ---
 
     def cambiar_color(self, nuevo_color):
         self.__color = nuevo_color
-
-    def cambiar_intensidad(self, valor_absoluto):
-        diferencia = valor_absoluto - self._nivelIntensidad
-        if diferencia > 0:
-            self.aumentarIntensidad(diferencia)
-        elif diferencia < 0:
-            self.disminuirIntensidad(abs(diferencia))
-
-    def get_id(self):
-        return self.__id
 
     def get_intensidad(self):
         return self.get_nivel()
