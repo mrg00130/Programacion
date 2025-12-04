@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 
 class Dispositivo(ABC):
 
+
     def __init__(self, nombre, nivel_inicial=0, min_val=0, max_val=100, estado=False):
         self._nombre = nombre
         self._nivelIntensidad = nivel_inicial
@@ -17,7 +18,6 @@ class Dispositivo(ABC):
     def apagar(self):
         self._estado = False
 
-
     @abstractmethod
     def aumentarIntensidad(self, cantidad=0):
         pass
@@ -26,6 +26,7 @@ class Dispositivo(ABC):
     def disminuirIntensidad(self, cantidad=0):
         pass
 
+    #
     def get_estado(self):
         return self._estado
 

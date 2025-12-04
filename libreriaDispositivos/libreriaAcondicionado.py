@@ -12,7 +12,6 @@ class AireAcondicionado(Dispositivo):
         self.__id = f"aire{AireAcondicionado.__contador}"
         self.__programador = None
 
-
     def aumentarIntensidad(self, cantidad=0):
         incremento = 1 if cantidad == 0 else cantidad
         nuevo_valor = self._nivelIntensidad + incremento

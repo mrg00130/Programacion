@@ -13,8 +13,6 @@ class Bombilla(Dispositivo):
         self.__color = color
         self.__programador = None
 
-    # --- IMPLEMENTACIÓN (Sin prints, solo lógica y excepciones) ---
-
     def aumentarIntensidad(self, cantidad=0):
         incremento = 10 if cantidad == 0 else cantidad
         nuevo_valor = self._nivelIntensidad + incremento
@@ -30,8 +28,6 @@ class Bombilla(Dispositivo):
         if nuevo_valor < self._minIntensidad:
             raise ValueError(f"La bombilla no puede bajar de {self._minIntensidad} (intentado: {nuevo_valor})")
         self._nivelIntensidad = nuevo_valor
-
-    # --- MÉTODOS ESPECÍFICOS ---
 
     def cambiar_color(self, nuevo_color):
         self.__color = nuevo_color
