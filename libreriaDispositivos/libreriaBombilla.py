@@ -1,5 +1,5 @@
 from libreriaDispositivos.libreriaProgramador import Programador
-from libreriaDispositivos.dispositivo import Dispositivo
+from libreriaDispositivos.libreriaDispositivo import Dispositivo
 
 
 class Bombilla(Dispositivo):
