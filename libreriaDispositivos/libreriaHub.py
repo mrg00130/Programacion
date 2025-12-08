@@ -31,9 +31,8 @@ class Hub:
         self._ruta_plano = r
 
     def get_plano(self):
-        return getattr(self, '_ruta_plano', None)  # Seguro anti-fallos
+        return getattr(self, '_ruta_plano', None)
 
-    # --- PERSISTENCIA INTELIGENTE ---
     def guardar_hogar(self, nombre_fichero="datos_casa.pkl"):
         with open(nombre_fichero, "wb") as f:
             pickle.dump(self, f)  # Guardamos SIEMPRE el objeto Hub entero

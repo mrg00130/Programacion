@@ -35,12 +35,12 @@ class VentanaPrincipal:
     def __init__(self, controlador):
         self._controlador = controlador
         self.ventana = tk.Tk()
-        self.ventana.title("SmartHome Suite vFinal Perfect")
+        self.ventana.title("Casa piguino")
         self.ventana.geometry("1400x900")
 
         frame_top = tk.Frame(self.ventana, pady=15, bg="#f0f0f0")
         frame_top.pack(fill=tk.X)
-        tk.Label(frame_top, text="🏠 DomoSuite", bg="#f0f0f0", fg="#333", font=("Helvetica", 16, "bold")).pack(
+        tk.Label(frame_top, text="🏠 LoloHouse", bg="#f0f0f0", fg="#333", font=("Helvetica", 16, "bold")).pack(
             side=tk.LEFT, padx=20)
 
         btn_s = {"bg": "#fff", "fg": "#333", "bd": 0, "padx": 10, "pady": 5, "relief": "flat"}
@@ -135,17 +135,15 @@ class VentanaPrincipal:
         # Importante: Añadimos tag_group
         win_frame = self.canvas_plano.create_window(x + 10, y + 10, window=frame_hab, anchor="nw", tags=tag_group)
 
-        # Bindings Movimiento
         lbl_titulo.bind("<ButtonPress-1>", lambda e: self._start_drag(e, win_frame, tag_group))
         lbl_titulo.bind("<B1-Motion>", lambda e: self._do_drag(e, win_frame, tag_group))
         lbl_titulo.bind("<ButtonRelease-1>", lambda e: self._stop_drag(e, habitacion, win_frame))
 
-        # 4. Resizer
         resizer = tk.Label(self.canvas_plano, text="⇲", bg=bg_color, fg="#555", cursor="sizing", font=("Arial", 14))
         win_resizer = self.canvas_plano.create_window(x + w - 15, y + h - 15, window=resizer, tags=tag_group)
 
         resizer.bind("<ButtonPress-1>", lambda e: self._start_resize(e, w, h))
-        # CORRECCIÓN: Pasamos 'win_frame' en lugar de coordenadas fijas x,y
+
         resizer.bind("<B1-Motion>",
                      lambda e: self._do_resize(e, habitacion, win_frame, tag_bg, win_resizer, frame_hab, canvas_int,
                                                win_int, bg_color))
