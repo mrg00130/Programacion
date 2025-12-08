@@ -1,5 +1,5 @@
-from libreriaDispositivos.libreriaProgramador import Programador
-from libreriaDispositivos.libreriaDispositivo import Dispositivo
+from .libreriaProgramador import Programador
+from .libreriaDispositivo import Dispositivo
 
 
 class AireAcondicionado(Dispositivo):
