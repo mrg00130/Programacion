@@ -1,0 +1,167 @@
+[18:52:27] 
+========================================
+INICIO SESIÓN: 2025-12-19 18:52:27
+========================================
+[18:52:27] Carga automática de fichero: datos_casa_v5.pkl
+[18:52:37] Fondo Salon: Cambiado a #ff80c0
+[18:53:50] 
+========================================
+INICIO SESIÓN: 2025-12-19 18:53:50
+========================================
+[18:53:50] Carga automática de fichero: datos_casa_v5.pkl
+[18:53:58] Interruptor Lampara techo: APAGADO -> ENCENDIDO
+[18:53:59] Interruptor Lampara techo: ENCENDIDO -> APAGADO
+[18:53:59] Interruptor Lampara techo: APAGADO -> ENCENDIDO
+[18:54:00] Interruptor Lampara techo: ENCENDIDO -> APAGADO
+[18:54:01] Interruptor Lampara techo: APAGADO -> ENCENDIDO
+[18:56:29] 
+========================================
+INICIO SESIÓN: 2025-12-19 18:56:29
+========================================
+[18:56:29] Carga automática de fichero: datos_casa_v5.pkl
+[18:58:38] 
+========================================
+INICIO SESIÓN: 2025-12-19 18:58:38
+========================================
+[18:58:39] Carga automática de fichero: datos_casa_v5.pkl
+[18:58:53] Redimensionada Cocina: 466x311
+[18:58:53] Redimensionada Cocina: 406x325
+[18:59:44] 
+========================================
+INICIO SESIÓN: 2025-12-19 18:59:44
+========================================
+[18:59:44] Carga automática de fichero: datos_casa_v5.pkl
+[19:00:08] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:00:08
+========================================
+[19:00:08] Carga automática de fichero: datos_casa_v5.pkl
+[19:00:22] Creada habitación: Dormitorio
+[19:00:37] Eliminada habitación: Dormitorio
+[19:03:03] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:03:03
+========================================
+[19:03:03] Carga automática de fichero: datos_casa_v5.pkl
+[19:03:16] Creada habitación: Dormitorio
+[19:07:53] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:07:53
+========================================
+[19:07:53] Fallo carga automática o primera ejecución.
+[19:10:37] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:10:37
+========================================
+[19:10:37] Fallo carga automática o primera ejecución.
+[19:11:01] Fin de sesión por usuario.
+[19:11:29] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:11:29
+========================================
+[19:11:29] Fallo carga automática o primera ejecución.
+[19:11:32] Fin de sesión por usuario.
+[19:14:03] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:14:03
+========================================
+[19:14:03] Error en carga automática.
+[19:16:01] Cierre de aplicación.
+[19:16:13] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:16:13
+========================================
+[19:16:13] Error en carga automática.
+[19:16:26] Creada habitación Salon
+[19:16:34] Creada habitación Cocina
+[19:16:41] Cierre de aplicación.
+[19:18:13] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:18:13
+========================================
+[19:18:13] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:18:17] Eliminada habitación Cocina
+[19:18:19] Eliminada habitación Salon
+[19:18:24] Añadido Bombilla 'Lampara' en Dormitorio
+[19:18:27] Switch Lampara: OFF -> ON
+[19:18:28] Switch Lampara: ON -> OFF
+[19:18:28] Switch Lampara: OFF -> ON
+[19:18:29] Switch Lampara: ON -> OFF
+[19:18:58] Añadido Horno 'Horno' en Cocina
+[19:19:11] Color habitación Cocina modificado
+[19:19:57] Añadido Persiana 'Persiana' en Dormitorio
+[19:20:07] SmartCool: Aire salon
+[19:20:11] SmartCool: Aire salon
+[19:20:25] SmartCool: Aire salon
+[19:23:12] Cierre de aplicación.
+[19:23:36] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:23:36
+========================================
+[19:23:36] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:23:48] Climatizando Aire salon a 30ºC
+[19:23:56] Aire salon alcanzó 30ºC
+[19:24:05] Cierre de aplicación.
+[19:27:55] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:27:55
+========================================
+[19:27:55] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:28:08] Climatizando Aire salon a 25ºC
+[19:28:12] Aire salon alcanzó 25ºC
+[19:28:25] Cierre de aplicación.
+[19:29:03] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:29:03
+========================================
+[19:29:04] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:29:10] Cierre de aplicación.
+[19:31:47] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:31:47
+========================================
+[19:31:47] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:34:59] Cierre de aplicación.
+[19:43:09] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:43:09
+========================================
+[19:43:09] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:57:56] Cierre de aplicación.
+[19:58:19] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:58:19
+========================================
+[19:58:19] Carga automática: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[19:58:23] Cierre de aplicación.
+[19:58:40] 
+========================================
+INICIO SESIÓN: 2025-12-19 19:58:40
+========================================
+[19:58:40] No se encontró archivo previo.
+[19:58:47] Cierre de aplicación.
+[20:00:55] 
+========================================
+INICIO SESIÓN: 2025-12-19 20:00:55
+========================================
+[20:00:55] No se encontró archivo previo. Iniciando vacío.
+[20:00:59] Cierre de aplicación.
+[20:01:02] 
+========================================
+INICIO SESIÓN: 2025-12-19 20:01:02
+========================================
+[20:01:02] No se encontró archivo previo. Iniciando vacío.
+[20:01:08] Carga manual: C:/Users/m4nol/Desktop/universidad/CUARTO/4.1/Programacion/PRACTICAS/Entrega_6_Manuel_Rodriguez_Guardia/Programacion/datos_casa_v5.pkl
+[20:01:10] Cierre de aplicación.
+[20:01:13] 
+========================================
+INICIO SESIÓN: 2025-12-19 20:01:13
+========================================
+[20:01:13] Carga automática: datos_casa_v5.pkl
+[20:01:16] Cierre de aplicación.
+[20:02:13] 
+========================================
+INICIO SESIÓN: 2025-12-19 20:02:13
+========================================
+[20:02:13] Carga automática: datos_casa_v5.pkl
+[20:02:17] Cierre de aplicación.
